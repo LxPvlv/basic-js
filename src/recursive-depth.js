@@ -1,9 +1,12 @@
 module.exports = class DepthCalculator {
+  constructor() {
+    this.calculateDepth = this.calculateDepth.bind(this);
+  }
   calculateDepth(arr) {
-    if(!Array.isArray(arr)) return 0;
-    const filtered = arr.filter(Array.isArray)
-    if(filtered.length ===0) return 1
-
-    return Math.max(...filtered.map(a=>this.calculateDepth(a)+1))
+    return Array.isArray(arr)
+      ? arr.length === 0
+        ? 1
+        : 1 + Math.max(...arr.map(this.calculateDepth))
+      : 0;
   }
 };
