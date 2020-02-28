@@ -4,9 +4,7 @@ module.exports = class DepthCalculator {
   }
   calculateDepth(arr) {
     return Array.isArray(arr)
-      ? arr.length === 0
-        ? 1
-        : 1 + Math.max(...arr.map(this.calculateDepth))
+      ? 1 + Math.max(0, ...arr.map(this.calculateDepth))
       : 0;
   }
 };
